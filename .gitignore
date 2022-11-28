@@ -2,3 +2,4 @@
 datasets/genius/*.txt
 datasets/kaggleData/*.txt
 Lyrics_*.txt
+/datasets/topArtists.txt
