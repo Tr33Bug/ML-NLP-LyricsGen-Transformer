@@ -3,3 +3,4 @@
 # datasets/kaggleData/*.txt
 # Lyrics_*.txt
 /datasets/topArtists.txt
+geniusToken.txt
