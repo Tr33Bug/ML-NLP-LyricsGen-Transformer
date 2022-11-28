@@ -1,5 +1,5 @@
 .DS_Store
 # datasets/genius/*.txt
 # datasets/kaggleData/*.txt
-Lyrics_*.txt
+# Lyrics_*.txt
 /datasets/topArtists.txt
