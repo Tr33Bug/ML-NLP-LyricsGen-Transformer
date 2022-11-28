@@ -1,4 +1,4 @@
 .DS_Store
-datasets/genius/*
-datasets/kaggleData/*
+datasets/genius/*.txt
+datasets/kaggleData/*.txt
 Lyrics_*.txt
