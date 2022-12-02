@@ -35,11 +35,11 @@ logFile.write('LOG STARTED')
 
 # load list from file 
 topArtists = []
-with open('./datasets/ServerGen_top/topArtistsSave.txt', 'r') as f:
+with open('./datasets/ServerGen_top/topArtistsTest.txt', 'r') as f:
     for line in f:
         topArtists.append(line.strip())
 topRapper = []
-with open('./datasets/ServerGen_top/topRappersSave.txt', 'r') as f:
+with open('./datasets/ServerGen_top/topRappersTest.txt', 'r') as f:
     for line in f:
         topRapper.append(line.strip())
 
@@ -63,23 +63,27 @@ print(GENIUS_ACCESS_TOKEN)
 # init crawler with token'
 genius = lyricsgenius.Genius(GENIUS_ACCESS_TOKEN)
 
-
+artist = []
 
 # try 10 times for every artist
 for artistName in topArtists:
     for i in range(10):
         try:
             # get artist
-            artist = genius.search_artist(artist, max_songs=100, sort='title')
-            # save every song to one file
-            writeSongToFile(artist)
-            # move all files to root
-            moveLyricsFiles(root, "./datasets/ServerGen_top/")
+            artistList = genius.search_artist(artist, max_songs=100, sort='title')
             logFile.write('Successfully crawled ' + artistName)
             break
         except:
-            print('Error occured, trying again...')
-            logFile.write('ERROR:', artistName, ' Error occured, trying again... file:', artist)
+            print('Error occured, trying again...', artistList)
+            logFile.write('ERROR: ' + artistName + ' Error occured, trying again... file: ')
+    if (artist != []):
+        # save every song to one file
+        writeSongToFile(artistList)
+    else:
+        logFile.write('FAILD FIRST LOOP')
+
+# move all files to root
+moveLyricsFiles(root, "./datasets/ServerGen_top/")
 
 logFile.write('FINISHED CRAWLING TOPARTISTS\n')
 
@@ -89,19 +93,18 @@ for artistName in topRapper:
         try:
             # get artist
             artist = genius.search_artist(artistName, max_songs=100, sort='title')
-            # save every song to one file
-            writeSongToFile(artist)
-            # move all files to root
-            moveLyricsFiles(root, "./datasets/ServerGen_rap/")
             logFile.write('Successfully crawled ' + artistName)
             break
         except:
-            print('Error occured, trying again...')
-            logFile.write('ERROR:', artistName, ' Error occured, trying again... file:', artist)
+            print('Error occured, trying again...', artist)
+            logFile.write('ERROR: ' + artistName + ' Error occured, trying again... file: ')
+
+    if (artist != []):
+        # save every song to one file
+        writeSongToFile(artist)
+    else:
+        logFile.write('FAILD SECOND LOOP')
+# move all files to root
+moveLyricsFiles(root, "./datasets/ServerGen_rap/")
 
 logFile.write('FINISHED CRAWLING RAPARTISTS\n')
-
- 
-logFile.write('LOG ENDED')
-
-logFile.close()
