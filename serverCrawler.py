@@ -30,7 +30,7 @@ logPath = root + 'log.txt'
 logFile = open(logPath, 'w')
 
 # init logfile with timestamp
-logFile.write('LOG STARTED')
+logFile.write('LOG STARTED\n')
 
 
 # load list from file 
@@ -71,19 +71,19 @@ for artistName in topArtists:
         try:
             # get artist
             artistList = genius.search_artist(artist, max_songs=100, sort='title')
-            logFile.write('Successfully crawled ' + artistName)
+            logFile.write('Successfully crawled ' + artistName + '\n')
             break
         except:
             print('Error occured, trying again...', artistList)
-            logFile.write('ERROR: ' + artistName + ' Error occured, trying again... file: ')
+            logFile.write('ERROR: ' + artistName + ' Error occured, trying again... \n')
         # wait 10 seconds
         time.sleep(10)
-        
+
     if (artist != []):
         # save every song to one file
         writeSongToFile(artistList)
     else:
-        logFile.write('FAILD FIRST LOOP')
+        logFile.write('FAILD FIRST LOOP\n')
 
 # move all files to root
 moveLyricsFiles(root, "./datasets/ServerGen_top/")
@@ -96,11 +96,11 @@ for artistName in topRapper:
         try:
             # get artist
             artist = genius.search_artist(artistName, max_songs=100, sort='title')
-            logFile.write('Successfully crawled ' + artistName)
+            logFile.write('Successfully crawled ' + artistName + '\n')
             break
         except:
             print('Error occured, trying again...', artist)
-            logFile.write('ERROR: ' + artistName + ' Error occured, trying again... file: ')
+            logFile.write('ERROR: ' + artistName + ' Error occured, trying again... \n')
         # wait 10 seconds
         time.sleep(10)
 
@@ -108,7 +108,7 @@ for artistName in topRapper:
         # save every song to one file
         writeSongToFile(artist)
     else:
-        logFile.write('FAILD SECOND LOOP')
+        logFile.write('FAILD SECOND LOOP\n')
 # move all files to root
 moveLyricsFiles(root, "./datasets/ServerGen_rap/")
 
