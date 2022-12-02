@@ -2,7 +2,7 @@
 import lyricsgenius
 import os
 from datetime import datetime
-
+import time
 ## ========================================== FUNCTIONS ==========================================
 
 # function to save every song to one file
@@ -76,6 +76,9 @@ for artistName in topArtists:
         except:
             print('Error occured, trying again...', artistList)
             logFile.write('ERROR: ' + artistName + ' Error occured, trying again... file: ')
+        # wait 10 seconds
+        time.sleep(10)
+        
     if (artist != []):
         # save every song to one file
         writeSongToFile(artistList)
@@ -98,6 +101,8 @@ for artistName in topRapper:
         except:
             print('Error occured, trying again...', artist)
             logFile.write('ERROR: ' + artistName + ' Error occured, trying again... file: ')
+        # wait 10 seconds
+        time.sleep(10)
 
     if (artist != []):
         # save every song to one file
