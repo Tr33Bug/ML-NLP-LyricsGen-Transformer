@@ -30,7 +30,21 @@ logPath = root + 'log.txt'
 logFile = open(logPath, 'w')
 
 # init logfile with timestamp
-logFile.write('LOG STARTED', str(datetime.datetime.now()))
+logFile.write('LOG STARTED')
+
+
+# load list from file 
+topArtists = []
+with open('./datasets/ServerGen_top/topArtistsSave.txt', 'r') as f:
+    for line in f:
+        topArtists.append(line.strip())
+topRapper = []
+with open('./datasets/ServerGen_top/topRappersSave.txt', 'r') as f:
+    for line in f:
+        topRapper.append(line.strip())
+
+print(topArtists[0])
+print(topRapper[0])
 
 
 
@@ -52,23 +66,42 @@ genius = lyricsgenius.Genius(GENIUS_ACCESS_TOKEN)
 
 
 # try 10 times for every artist
-for i in range(10):
-    try:
-        # get artist
-        artist = genius.search_artist('The Weeknd', max_songs=100, sort='title')
-        # save every song to one file
-        writeSongToFile(artist)
-        # move all files to root
-        moveLyricsFiles(root, root)
-        break
-    except:
-        print('Error occured, trying again...')
+for artistName in topArtists:
+    for i in range(10):
+        try:
+            # get artist
+            artist = genius.search_artist(artist, max_songs=100, sort='title')
+            # save every song to one file
+            writeSongToFile(artist)
+            # move all files to root
+            moveLyricsFiles(root, "./datasets/ServerGen_top/")
+            logFile.write('Successfully crawled ' + artistName)
+            break
+        except:
+            print('Error occured, trying again...')
+            logFile.write('ERROR:', artistName, ' Error occured, trying again... file:', artist)
 
+logFile.write('FINISHED CRAWLING TOPARTISTS\n')
 
+# try 10 times for every artist
+for artistName in topRapper:
+    for i in range(10):
+        try:
+            # get artist
+            artist = genius.search_artist(artistName, max_songs=100, sort='title')
+            # save every song to one file
+            writeSongToFile(artist)
+            # move all files to root
+            moveLyricsFiles(root, "./datasets/ServerGen_rap/")
+            logFile.write('Successfully crawled ' + artistName)
+            break
+        except:
+            print('Error occured, trying again...')
+            logFile.write('ERROR:', artistName, ' Error occured, trying again... file:', artist)
 
-# for manual data generation
-artistFile = genius.search_artist("JAY-Z", max_songs=50, sort="popularity")
+logFile.write('FINISHED CRAWLING RAPARTISTS\n')
 
+ 
+logFile.write('LOG ENDED')
 
-writeSongToFile(artistFile)
-moveLyricsFiles(root, "./datasets/add/")
+logFile.close()
