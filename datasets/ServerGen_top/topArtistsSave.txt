@@ -1,0 +1,108 @@
+AC/DC
+Aretha Franklin
+Beyoncé
+Bob Dylan
+Bob Marley
+Bruce Springsteen
+Chuck Berry
+David Bowie
+Diana Ross
+Eagles
+Elton John
+Elvis Presley
+Eminem
+Guns N' Roses
+James Brown
+Jay-Z
+Jimi Hendrix
+John Lennon
+Johnny Cash
+Joni Mitchell
+Led Zeppelin
+Little Richard
+Madonna
+Marvin Gaye
+Michael Jackson
+Nas
+Nirvana
+Parliament Funkadelic
+Paul McCartney
+Pink Floyd
+Prince
+Public Enemy
+Queen
+Ray Charles
+Stevie Wonder
+The Beach Boys
+The Beatles
+The Clash
+The Doors
+The Kinks
+The Notorious B.I.G.
+The Rolling Stones
+The Velvet Underground
+The Who
+Tina Turner
+Tupac Shakur
+U2
+Whitney Houston
+Ye
+Aerosmith
+Alice Cooper
+Amy Winehouse
+Anthrax
+B.B. King
+Beastie Boys
+Billy Joel
+Black Sabbath
+Blondie
+Bo Diddley
+Buddy Holly
+Creedence Clearwater Revival
+Daft Punk
+Def Leppard
+Depeche Mode
+Earth Wind & Fire
+Elvis Costello
+Eurythmics
+Fleetwood Mac
+Foo Fighters
+Frank Sinatra
+Genesis
+Hall & Oates
+Hank Williams
+Iron Maiden
+Janis Joplin
+Jerry Lee Lewis
+Judas Priest
+Justin Timberlake
+KISS
+Kraftwerk
+Lynyrd Skynyrd
+Megadeth
+Metallica
+NWA
+Neil Young
+Otis Redding
+Outkast
+Pearl Jam
+R.E.M.
+Radiohead
+Rod Stewart
+Run-D.M.C.
+Sam Cooke
+Santana
+Sex Pistols
+Simon & Garfunkel
+Slayer
+Smokey Robinson & The Miracles
+Talking Heads
+The Everly Brothers
+The Police
+The Righteous Brothers
+The Supremes
+The Temptations
+Van Halen
+Van Morrison
+Willie Nelson
+Wu-Tang Clan
