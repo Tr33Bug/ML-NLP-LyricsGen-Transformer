@@ -1,3 +1,4 @@
+Translations
 One two three
 If you close the door
 The night could last forever
@@ -27,5 +28,7 @@ All the people are dancing and theyre having such fun
 I wish it could happen to me
 Cause if you close the door
 Id never have to see the day again
+
+
 Id never have to see the day again once more
 Id never have to see the day again

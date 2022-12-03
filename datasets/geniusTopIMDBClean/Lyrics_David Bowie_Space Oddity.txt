@@ -1,3 +1,4 @@
+
 Ground Control to Major Tom
 Ground Control to Major Tom
 Take your protein pills and put your helmet on
@@ -28,6 +29,8 @@ Can you hear me Major Tom
 Can you hear me Major Tom
 Can you hear me Major Tom
 Can you
+
+
 Here am I floating round my tin can
 Far above the moon
 Planet Earth is blue

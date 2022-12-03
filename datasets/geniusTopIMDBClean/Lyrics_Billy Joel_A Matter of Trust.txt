@@ -1,3 +1,4 @@
+
 One two
 One two three four
 Some love is just a lie of the heart
@@ -28,6 +29,8 @@ Some love is just a lie of the mind
 Its make believe until its only a matter of time
 And some might have learned to adjust
 But then it never was a matter of trust
+
+
 Im sure youre aware love
 Weve both had our share of
 Believing too long

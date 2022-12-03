@@ -1,0 +1,9 @@
+
+000 Intro
+013 Main theme
+030 Second theme
+047 Transition
+053 Main theme
+126 Transition to the Coda
+155 Coda based on the main theme
+220 End

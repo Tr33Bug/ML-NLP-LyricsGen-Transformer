@@ -1,3 +1,4 @@
+
 Harry got up
 Dressed all in black
 Went down to the station
@@ -34,6 +35,8 @@ Things can get pretty strange
 In a New York Minute
 Everything can change
 In a New York Minute
+
+
 And in these days
 When darkness falls early
 And people rush home
