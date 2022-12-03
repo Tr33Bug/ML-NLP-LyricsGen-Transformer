@@ -1,4 +1,4 @@
- Hey 
+Hey 
 Llama llama  uh 
 Red pajama
 Reads a story with who
@@ -32,7 +32,6 @@ Mama isnt comin yet
 Comin yet  yet 
 Baby llama starts to fret
 Starts to fret  fret 
-
 Llama llama
 Red pajama
 Whimpers softly fo his mama
