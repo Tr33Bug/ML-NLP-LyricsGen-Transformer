@@ -1,4 +1,4 @@
-Angel Lyrics[Verse 1]
+Angel Lyrics
 Underneath this canopy of snow
 Where fifty-seven winters
 Took their toll
@@ -8,7 +8,6 @@ I believed in you
 Like Elvis Presley
 Singing psalms on a Sunday
 Where did you go?
-[Pre-Chorus]
 Well she's gone to meet her maker
 Back to where she came from
 Come to save her soul
@@ -19,7 +18,6 @@ Come to take her home
 Your bedtime
 Well past bedtime
 
-[Chorus]
 Angel
 My angel
 Fly over me
@@ -29,7 +27,6 @@ My angel
 Fly over me
 Angel
 
-[Verse 2]
 She took her life
 Within her hands
 She took her life
@@ -41,7 +38,7 @@ I believed in you
 Like Elvis Presley
 Singin live from Las Vegas
 Where did you go?
-You might also like[Pre-Chorus]
+You might also like
 Well she's gone to meet her maker
 Back to where she came from
 Come to save her soul
@@ -52,7 +49,6 @@ Come to take her home
 Your bedtime
 Well past bedtime
 
-[Chorus]
 Angel
 My angel
 Fly over me
@@ -62,14 +58,12 @@ My angel
 Fly over me
 Angel
 
-[Bridge]
 Close your eyes
 Go to sleep
 Forever in my heart
 I’ll keep you save
 Forever
 I’ll keep you save
-[Outro]
 Angel
 My angel
 Angel
