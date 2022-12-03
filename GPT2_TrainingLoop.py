@@ -1,7 +1,4 @@
 # %%
-# installation: 
-
-# %%
 import pandas as pd
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 import torch
@@ -227,34 +224,6 @@ print("Training complete!")
 print("Total training took {:} (h:mm:ss)".format(format_time(time.time()-total_t0)))
 
 # %%
-pd.set_option('precision', 2)
-df_stats = pd.DataFrame(data=training_stats)
-df_stats = df_stats.set_index('epoch')
-#df = df.style.set_table_styles([dict(selector="th",props=[('max-width', '70px')])])
-df_stats
-
-# %%
-# Use plot styling from seaborn.
-sns.set(style='darkgrid')
-
-# Increase the plot size and font size.
-sns.set(font_scale=1.5)
-plt.rcParams["figure.figsize"] = (12,6)
-
-# Plot the learning curve.
-plt.plot(df_stats['Training Loss'], 'b-o', label="Training")
-plt.plot(df_stats['Valid. Loss'], 'g-o', label="Validation")
-
-# Label the plot.
-plt.title("Training & Validation Loss")
-plt.xlabel("Epoch")
-plt.ylabel("Loss")
-plt.legend()
-plt.xticks([1, 2, 3, 4])
-
-plt.show()
-
-# %%
 # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
 output_dir = './model_save/'
 
@@ -269,5 +238,17 @@ print("Saving model to %s" % output_dir)
 model_to_save = model.module if hasattr(model, 'module') else model  # Take care of distributed/parallel training
 model_to_save.save_pretrained(output_dir)
 tokenizer.save_pretrained(output_dir)
+
+# %%
+pd.set_option('precision', 2)
+df_stats = pd.DataFrame(data=training_stats)
+df_stats = df_stats.set_index('epoch')
+#df = df.style.set_table_styles([dict(selector="th",props=[('max-width', '70px')])])
+
+# export dataframe to csv
+df_stats.to_csv('training_stats.csv')
+
+# %%
+
 
 
