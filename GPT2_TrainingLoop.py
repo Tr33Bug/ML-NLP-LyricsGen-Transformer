@@ -11,11 +11,15 @@ from tqdm import tqdm, trange
 import time
 import datetime
 import os
+import random
 
 # %%
 #Seeds and hyperparameters
 torch.manual_seed(0)
 torch.cuda.manual_seed_all(0)
+
+# set random seed
+random.seed(0)
 
 BATCH_SIZE = 2
 EPOCHS = 5
