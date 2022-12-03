@@ -21,8 +21,8 @@ torch.cuda.manual_seed_all(0)
 # set random seed
 random.seed(0)
 
-BATCH_SIZE = 2
-EPOCHS = 5
+BATCH_SIZE = 3
+EPOCHS = 40
 LEARNING_RATE = 2e-5
 WARMUP_STEPS = 200
 EPSILION = 1e-8
