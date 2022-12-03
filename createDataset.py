@@ -1,6 +1,28 @@
+# print asciart of the word DatasetCreater by Overfitter
+print('''
+   _ \                       _| _)  |    |               
+  |   | \ \   /  _ \   __|  |    |  __|  __|   _ \   __| 
+  |   |  \ \ /   __/  |     __|  |  |    |     __/  |    
+ \___/    \_/  \___| _|    _|   _| \__| \__| \___| _|    
+                                                         ''')
+print('''   ___|   ___| \ \     /        ___|                    |                
+  |     \___ \  \ \   /        |       __|  _ \   _` |  __|   _ \    __| 
+  |           |  \ \ / _____|  |      |     __/  (   |  |    (   |  |    
+ \____| _____/    \_/         \____| _|   \___| \__,_| \__| \___/  _|    
+                                                                         
+''')
+
+
+print('⏳⏳⏳ Starting CSV-Creator by Overfitter ⏳⏳⏳')
+
 # imports and setup
 import os
-import pandas as pd
+import sys
+try:
+    import pandas as pd
+except ImportError:
+    print('❌ --> Pandas is not installed, please install it with "pip install pandas"')
+    sys.exit()
 
 
 
@@ -15,6 +37,9 @@ geniusTopIMDBClean = root + 'datasets/geniusTopIMDBClean/'
 
 exportPath = './datasets/df_songs.csv'
 
+print('\n')
+print('Generating df_songs.csv from', geniusTopRapIMDBClean, 'and', geniusTopIMDBClean, '!')
+print('----------------------------------------')
 
 
 def createDfFromFiles(path):
@@ -34,9 +59,6 @@ def createDfFromFiles(path):
 
     # delete all Lyrics_ from filename
     files = [(file.replace('Lyrics_', ''), content) for file, content in files]
-
-    # replace all \n with space
-    files = [(file, content.replace('\n', ' ')) for file, content in files]
 
     # replace all double spaces with single space
     files = [(file, content.replace('  ', ' ')) for file, content in files]
@@ -85,21 +107,23 @@ for artist, songs in less50:
 
 
 # print number of artists in top and rap
-print('df_top:', len(df_top['Artist'].unique()))
-print('df_rap:', len(df_rap['Artist'].unique()))
+print('    Number of Top Artists --> df_top:', len(df_top['Artist'].unique()))
+print('    Number of Top Rappers --> df_rap:', len(df_rap['Artist'].unique()))
 
-
+print('✅ --> Cleaning Dataframes I done!')
 #### MERGE DATAFRAMES
 
 # merge datasets
 df_songs = pd.concat([df_top, df_rap], ignore_index=True)
 df_songs.head()
 
+print('✅ --> Merging Dataframes I done!')
 #### CLEAN DATA II
 
 # check for empty entries in dataframes
-print('df_top:', df_top.isnull().values.any())
-print('df_rap:', df_rap.isnull().values.any())
+print('    Empty entries in the dataframes:')
+print('    df_top:', df_top.isnull().values.any())
+print('    df_rap:', df_rap.isnull().values.any())
 
 
 # add lyric word count
@@ -117,8 +141,10 @@ for artist in df_songs['Artist'].unique():
     if len(df_songs[df_songs['Artist'] == artist]) < 30:
         df_songs = df_songs[df_songs['Artist'] != artist]
 
-
+print('✅ --> Cleaning Dataframe done!')
 #### CREATE CSV
 
 # export dataframe to csv to path
 df_songs.to_csv(exportPath, index=False)
+
+print('✅ --> Exporting dataframe to', exportPath, 'done!\n')

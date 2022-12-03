@@ -1,4 +1,3 @@
-
 Disease disease
 Spreading the disease
 With some help from Captain Trips
@@ -37,8 +36,6 @@ Fear yes fear
 His end is growing near
 He didnt count on mans good faith
 And their will to persevere
-
-
 Hes seeing hes calling
 His legacy hes spawning
 Hes coming corrupting
