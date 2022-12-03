@@ -60,9 +60,6 @@ def createDfFromFiles(path):
     # delete all Lyrics_ from filename
     files = [(file.replace('Lyrics_', ''), content) for file, content in files]
 
-    # replace all \n with space
-    files = [(file, content.replace('\n', ' ')) for file, content in files]
-
     # replace all double spaces with single space
     files = [(file, content.replace('  ', ' ')) for file, content in files]
 
