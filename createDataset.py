@@ -107,8 +107,8 @@ for artist, songs in less50:
 
 
 # print number of artists in top and rap
-print('    df_top:', len(df_top['Artist'].unique()))
-print('    df_rap:', len(df_rap['Artist'].unique()))
+print('    Number of Top Artists --> df_top:', len(df_top['Artist'].unique()))
+print('    Number of Top Rappers --> df_rap:', len(df_rap['Artist'].unique()))
 
 print('✅ --> Cleaning Dataframes I done!')
 #### MERGE DATAFRAMES
@@ -121,6 +121,7 @@ print('✅ --> Merging Dataframes I done!')
 #### CLEAN DATA II
 
 # check for empty entries in dataframes
+print('    Empty entries in the dataframes:')
 print('    df_top:', df_top.isnull().values.any())
 print('    df_rap:', df_rap.isnull().values.any())
 
