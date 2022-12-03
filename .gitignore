@@ -4,6 +4,7 @@
 # Lyrics_*.txt
 /datasets/topArtists.txt
 geniusToken.txt
-log.txt
+/datasets/archive
 /datasets/df_songs.csv
 log.txt
+/datasets/df_songs.csv
