@@ -12,11 +12,23 @@ echo ''
 # wait for 2 seconds
 sleep 2
 
+if [ -f createDataset.py ]; then
+    echo "⏳ --> Start creating dataset.py..."
+    python3 createDataset.py
+    echo "✅ --> Dataset createt!"
+else
+    echo "❌ --> Could not find createDataset.py!"
+fi
+echo ''
+echo ''
+# wait for 2 seconds
+sleep 2
+
 
 if [ -f GPT2-Training.py ]; then
     echo "⏳ --> Starting training GPT2-Training.py..."
     echo "wrinting logfiles to log.txt"
-    python3 GPT2-Training.py >> log.txt
+    # python3 GPT2-Training.py >> log.txt
     echo "✅ --> Training GPT2-Training.py finished!"
 else
     echo "❌ --> Could not find GPT2-Training.py!"
@@ -38,4 +50,3 @@ fi
 echo ''
 echo ''
 echo "######### Training finished! #########"
-
