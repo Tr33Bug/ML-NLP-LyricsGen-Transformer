@@ -1,4 +1,27 @@
 # %%
+print('''
+   _ \                       _| _)  |    |               
+  |   | \ \   /  _ \   __|  |    |  __|  __|   _ \   __| 
+  |   |  \ \ /   __/  |     __|  |  |    |     __/  |    
+ \___/    \_/  \___| _|    _|   _| \__| \__| \___| _|    
+                                                         ''')
+
+
+print('''
+   _____ _____ _______ ___     _______        _       _             
+  / ____|  __ \__   __|__ \   |__   __|      (_)     (_)            
+ | |  __| |__) | | |     ) |_____| |_ __ __ _ _ _ __  _ _ __   __ _ 
+ | | |_ |  ___/  | |    / /______| | '__/ _` | | '_ \| | '_ \ / _` |
+ | |__| | |      | |   / /_      | | | | (_| | | | | | | | | | (_| |
+  \_____|_|      |_|  |____|     |_|_|  \__,_|_|_| |_|_|_| |_|\__, |
+                                                               __/ |
+                                                              |___/ 
+''')
+# %%
+print('\n')
+print('⏳⏳⏳ Starting GPT2 TRAININGr by Overfitter ⏳⏳⏳')
+
+# %%
 import pandas as pd
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 import torch
@@ -12,6 +35,9 @@ import time
 import datetime
 import os
 import random
+
+# %%
+print('✅ --> All imports are done!')
 
 # %%
 #Seeds and hyperparameters
@@ -38,6 +64,9 @@ lyrics_df = pd.read_csv('./datasets/df_songs.csv')
 lyrics_df = lyrics_df.drop(columns=['Song','LyricsWordCount', 'Artist'])
 
 lyrics_df.head()
+
+# %%
+print('✅ --> Loaded dataset!')
 
 # %% [markdown]
 # ---
@@ -109,6 +138,9 @@ def format_time(elapsed):
     return str(datetime.timedelta(seconds=int(round((elapsed)))))
 
 # %%
+print('⏳ --> Start training-loop!')
+
+# %%
 total_t0 = time.time()
 training_stats = []
 
@@ -120,7 +152,7 @@ model = model.to(device)
 for epoch_i in range(0, EPOCHS):
     print("")
     print('======== Epoch {:} / {:} ========'.format(epoch_i + 1, EPOCHS))
-    print('Training...')
+    print('Training...\n')
     
     # ========================================
     #               Training
@@ -129,6 +161,9 @@ for epoch_i in range(0, EPOCHS):
     t0 = time.time()
     total_train_loss = 0
     model.train()
+
+    print('✅ --> Epoche', epoch_i, 'model.train done!\n')
+
 
     for step, batch in enumerate(train_dataloader):
 
@@ -147,8 +182,10 @@ for epoch_i in range(0, EPOCHS):
         if step % sample_every == 0 and not step == 0:
 
             elapsed = format_time(time.time() - t0)
-            print('  Batch {:>5,}  of  {:>5,}. Loss: {:>5,}.   Elapsed: {:}.'.format(step, len(train_dataloader), batch_loss, elapsed))
+            print('✅ Batch {:>5,}  of  {:>5,}. Loss: {:>5,}.   Elapsed: {:}.\n'.format(step, len(train_dataloader), batch_loss, elapsed))
+            print('⏳ --> Start evaluating model!\n')
             model.eval()
+            print('✅ --> Done evaluating model!\n')
             sample_outputs = model.generate(
                                     bos_token_id=random.randint(1,30000),
                                     do_sample=True,   
@@ -157,11 +194,17 @@ for epoch_i in range(0, EPOCHS):
                                     top_p=0.95, 
                                     num_return_sequences=1
                                 )
+            print('✅ --> Model evaluation done!\n')
+            print('⏳ --> Print test-generated text!\n')
             for i, sample_output in enumerate(sample_outputs):
                   print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=True)))
             
+            print('✅ --> Print test-generated text done!\n')
+            
+            print('⏳ --> Start training model again, in sample Loop\n')
             model.train()
-
+            print('✅ --> Done training model again, in sample Loop\n')
+        
         loss.backward()
         optimizer.step()
         scheduler.step()
@@ -172,16 +215,15 @@ for epoch_i in range(0, EPOCHS):
     # Measure how long this epoch took.
     training_time = format_time(time.time() - t0)
 
-    print("")
-    print("  Average training loss: {0:.2f}".format(avg_train_loss))
-    print("  Training epoch took: {:}".format(training_time))
+    print("✅ --> Training epoch done!\n")
+    print("Average training loss: {0:.2f}\n".format(avg_train_loss))
+    print("Training epoch took: {:}\n".format(training_time))
         
     # ========================================
     #               Validation
     # ========================================
 
-    print("")
-    print("Running Validation...")
+    print('⏳ --> Start validating model!\n')
 
     t0 = time.time()
     model.eval()
@@ -211,8 +253,9 @@ for epoch_i in range(0, EPOCHS):
     
     validation_time = format_time(time.time() - t0)    
 
-    print("  Validation Loss: {0:.2f}".format(avg_val_loss))
-    print("  Validation took: {:}".format(validation_time))
+    print("✅ --> Validation epoch done!\n")
+    print("Validation Loss: {0:.2f}\n".format(avg_val_loss))
+    print("Validation took: {:}".format(validation_time))
 
     # Record all statistics from this epoch.
     training_stats.append(
@@ -225,9 +268,10 @@ for epoch_i in range(0, EPOCHS):
         }
     )
 
-print("")
-print("Training complete!")
+print("✅ Training complete!\n")
 print("Total training took {:} (h:mm:ss)".format(format_time(time.time()-total_t0)))
+
+print('⏳ --> Start saving model!\n')
 
 # %%
 # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
@@ -246,6 +290,10 @@ model_to_save.save_pretrained(output_dir)
 tokenizer.save_pretrained(output_dir)
 
 # %%
+print('✅ --> Model saved!\n')
+print('⏳ --> Start saving training stats!\n')
+
+# %%
 pd.set_option('precision', 2)
 df_stats = pd.DataFrame(data=training_stats)
 df_stats = df_stats.set_index('epoch')
@@ -255,6 +303,10 @@ df_stats = df_stats.set_index('epoch')
 df_stats.to_csv('training_stats.csv')
 
 # %%
+print('✅ --> Training stats saved!\n')
 
+print('======================================== TRAINING DONE ========================================')
+# print date and time
+print('Date and time:', datetime.datetime.now())
 
 
