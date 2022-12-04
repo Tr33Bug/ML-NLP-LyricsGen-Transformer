@@ -16,7 +16,7 @@ sleep 2
 if [ -f GPT2-Training.py ]; then
     echo "⏳ --> Starting training GPT2-Training.py..."
     echo "wrinting logfiles to log.txt"
-    #python3 GPT2-Training.py >> log.txt
+    python3 GPT2-Training.py >> log.txt
     echo "✅ --> Training GPT2-Training.py finished!"
 else
     echo "❌ --> Could not find GPT2-Training.py!"
@@ -30,7 +30,7 @@ sleep 2
 if [ -f GPT2_TrainingLoop.py ]; then
     echo "⏳ --> Starting training GPT2_TrainingLoop.py..."
     echo "wrinting logfiles to log.txt"
-    #python3 GPT2_TrainingLoop.py >> log.txt
+    python3 GPT2_TrainingLoop.py >> log.txt
     echo "✅ --> Training GPT2_TrainingLoop.py finished!"
 else
     echo "❌ --> Could not find GPT2_TrainingLoop.py!"
