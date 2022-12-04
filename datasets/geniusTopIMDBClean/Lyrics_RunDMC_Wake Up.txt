@@ -1,4 +1,4 @@
- Wake up   wake up 
+Wake up   wake up 
 Get up 
 Wake up   wake up 
 Get up 
@@ -29,7 +29,6 @@ It was cool to chill in foreign places
 It was a dream  get up 
 Just a dream  wake up   wake up   get up 
 Wake up   wake up   get up   wake up 
-
 All cities of the world were renovated
 And the people all chilled and celebrated
 They were all so happy and elated

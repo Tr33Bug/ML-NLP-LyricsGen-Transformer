@@ -1,4 +1,3 @@
-
 Bicycle bicycle bicycle
 I want to ride my
 Bicycle bicycle bicycle
@@ -37,8 +36,6 @@ Bicycle bicycle
 Bicycle bicycle
 Bicycle bicycle race
 I want a bicycle race 
-
-
 Hey You say coke I say caine
 You say John I say Wayne
 Hot dog I say Cool it man

@@ -1,4 +1,3 @@
-
 There goes the siren that warns of the air raid
 There comes the sound of the guns sending flak
 Out for the scramble weve got to get airborne
@@ -28,8 +27,6 @@ Rolling turning diving
 Rolling turning diving doing it again
 Rolling turning diving
 Rolling turning diving
-
-
 Run live to fly
 Fly to live do or die
 Wont you run live to fly

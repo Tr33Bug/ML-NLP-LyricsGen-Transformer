@@ -1,4 +1,3 @@
-
 Hear the rime of the ancient Mariner
 See his eye as he stops one of three
 Mesmerises one of the wedding guests
@@ -28,8 +27,6 @@ We stuck nor breath nor motion
 As idle as a painted ship upon a painted ocean
 Water water everywhere and all the boards did shrink
 Water water everywhere nor any drop to drink
-
-
 There calls the Mariner There comes a ship oer the line
 But how can she sail with no wind in her sails and no tide
 See onward she comes
