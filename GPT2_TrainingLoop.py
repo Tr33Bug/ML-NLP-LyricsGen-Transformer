@@ -19,7 +19,7 @@ print('''
 ''')
 # %%
 print('\n')
-print('⏳⏳⏳ Starting GPT2 TRAININGr by Overfitter ⏳⏳⏳')
+print('⏳⏳⏳ Starting GPT2 TRAINING by Overfitter ⏳⏳⏳')
 
 # %%
 import pandas as pd
@@ -39,6 +39,11 @@ import random
 # %%
 print('✅ --> All imports are done!')
 
+# get own file name
+import sys
+file_name = sys.argv[0]
+
+print(' --> FILE NAME: ', file_name)
 # %%
 #Seeds and hyperparameters
 torch.manual_seed(0)
