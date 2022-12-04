@@ -36,6 +36,8 @@ geniusTopRapIMDBClean = root + 'datasets/geniusTopRapIMDBClean/'
 geniusTopIMDBClean = root + 'datasets/geniusTopIMDBClean/'
 
 exportPath = './datasets/df_songs.csv'
+exportPathRap = './datasets/df_rap.csv'
+exportPathTop = './datasets/df_top.csv'
 
 print('\n')
 print('Generating df_songs.csv from', geniusTopRapIMDBClean, 'and', geniusTopIMDBClean, '!')
@@ -111,6 +113,14 @@ print('    Number of Top Artists --> df_top:', len(df_top['Artist'].unique()))
 print('    Number of Top Rappers --> df_rap:', len(df_rap['Artist'].unique()))
 
 print('✅ --> Cleaning Dataframes I done!')
+
+#### CREATE CSV
+df_rap.to_csv(exportPath, index=False)
+df_top.to_csv(exportPath, index=False)
+
+print('✅ --> Exporting dataframes rap and top to', exportPath, 'done!\n')
+
+
 #### MERGE DATAFRAMES
 
 # merge datasets
