@@ -115,10 +115,10 @@ print('    Number of Top Rappers --> df_rap:', len(df_rap['Artist'].unique()))
 print('✅ --> Cleaning Dataframes I done!')
 
 #### CREATE CSV
-df_rap.to_csv(exportPath, index=False)
-df_top.to_csv(exportPath, index=False)
+df_rap.to_csv(exportPathRap, index=False)
+df_top.to_csv(exportPathTop, index=False)
 
-print('✅ --> Exporting dataframes rap and top to', exportPath, 'done!\n')
+print('✅ --> Exporting dataframes rap and top to', exportPathTop, 'and', exportPathRap, 'done!\n')
 
 
 #### MERGE DATAFRAMES
