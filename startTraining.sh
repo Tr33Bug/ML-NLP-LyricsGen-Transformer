@@ -21,6 +21,9 @@ else
 fi
 echo ''
 echo ''
+
+'''
+#### Start training  GPT2-Training.py ####
 # wait for 2 seconds
 sleep 2
 
@@ -35,6 +38,9 @@ else
 fi
 echo ''
 echo ''
+'''
+
+#### Start training  GPT2_TrainingLoop.py ####
 # wait for 2 seconds
 sleep 2
 
@@ -49,4 +55,38 @@ else
 fi
 echo ''
 echo ''
+
+#### Start training  GPT2_TrainingLoop.py ####
+# wait for 2 seconds
+sleep 2
+
+
+if [ -f GPT2_TrainingLoopRap.py ]; then
+    echo "⏳ --> Starting training GPT2_TrainingLoopRap.py..."
+    echo "wrinting logfiles to log.txt"
+    python3 GPT2_TrainingLoopRap.py >> log.txt
+    echo "✅ --> Training GPT2_TrainingLoopRap.py finished!"
+else
+    echo "❌ --> Could not find GPT2_TrainingLoop.py!"
+fi
+echo ''
+echo ''
+
+#### Start training  GPT2_TrainingLoop.py ####
+# wait for 2 seconds
+sleep 2
+
+
+if [ -f GPT2_TrainingLoopTop.py ]; then
+    echo "⏳ --> Starting training GPT2_TrainingLoopTop.py..."
+    echo "wrinting logfiles to log.txt"
+    python3 GPT2_TrainingLoopTop.py >> log.txt
+    echo "✅ --> Training GPT2_TrainingLoopTop.py finished!"
+else
+    echo "❌ --> Could not find GPT2_TrainingLoopTop.py!"
+fi
+echo ''
+echo ''
+
+
 echo "######### Training finished! #########"
