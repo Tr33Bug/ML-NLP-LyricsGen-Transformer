@@ -17,6 +17,13 @@ print('''
                                                                __/ |
                                                               |___/ 
 ''')
+
+# %%
+# change dataset
+
+trainData = 'both' # 'top' 'both'
+
+
 # %%
 print('\n')
 print('⏳⏳⏳ Starting GPT2 TRAINING by Overfitter ⏳⏳⏳')
@@ -44,6 +51,7 @@ import sys
 file_name = sys.argv[0]
 
 print(' --> FILE NAME: ', file_name)
+
 # %%
 #Seeds and hyperparameters
 torch.manual_seed(0)
@@ -53,7 +61,7 @@ torch.cuda.manual_seed_all(0)
 random.seed(0)
 
 BATCH_SIZE = 2
-EPOCHS = 40
+EPOCHS = 10
 LEARNING_RATE = 2e-5
 WARMUP_STEPS = 200
 EPSILION = 1e-8
@@ -65,13 +73,36 @@ sample_every = 100
 # ---
 
 # %%
-lyrics_df = pd.read_csv('./datasets/df_songs.csv')
-lyrics_df = lyrics_df.drop(columns=['Song','LyricsWordCount', 'Artist'])
+# Paths
+
+# top dataset
+df_top = pd.read_csv('./datasets/df_top.csv')
+df_top  = df_top.drop(columns=['Song', 'Artist'])
+
+# rap dataset
+df_rap = pd.read_csv('./datasets/df_rap.csv')
+df_rap  = df_rap.drop(columns=['Song', 'Artist'])
+
+# topRap merge dataset
+df_songs = pd.read_csv('./datasets/df_songs.csv')
+df_songs = df_songs.drop(columns=['Song','LyricsWordCount', 'Artist'])#
+
+# chose dataset on trainData string
+if trainData == 'top':
+    lyrics_df = df_top
+elif trainData == 'rap':
+    lyrics_df = df_rap
+elif trainData == 'both':
+    lyrics_df = df_songs
+else:
+    print('❌ --> ERROR: trainData string is not correct')
+
+
 
 lyrics_df.head()
 
 # %%
-print('✅ --> Loaded dataset!')
+print('✅ --> Loaded dataset: ', trainData)
 
 # %% [markdown]
 # ---
@@ -280,7 +311,7 @@ print('⏳ --> Start saving model!\n')
 
 # %%
 # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
-output_dir = './model_save/'
+output_dir = './model_save/' + trainData + '/'
 
 # Create output directory if needed
 if not os.path.exists(output_dir):
@@ -305,7 +336,7 @@ df_stats = df_stats.set_index('epoch')
 #df = df.style.set_table_styles([dict(selector="th",props=[('max-width', '70px')])])
 
 # export dataframe to csv
-df_stats.to_csv('training_stats.csv')
+df_stats.to_csv('training_stats_' + trainData + '.csv')
 
 # %%
 print('✅ --> Training stats saved!\n')
