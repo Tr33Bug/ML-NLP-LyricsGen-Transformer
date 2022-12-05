@@ -124,7 +124,7 @@ class GPT2Dataset(Dataset):
         self.attn_masks = []
 
         for txt in txt_list:
-            encodings_dict = tokenizer('<|startoftext|>'+ txt + '<|endoftext|>', truncation=True, max_length=max_length, padding="max_length")
+            encodings_dict = tokenizer('<|startoftext|>'+ str(txt) + '<|endoftext|>', truncation=True, max_length=max_length, padding="max_length")
             self.input_ids.append(torch.tensor(encodings_dict['input_ids']))
             self.attn_masks.append(torch.tensor(encodings_dict['attention_mask']))
     
