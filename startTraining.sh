@@ -12,41 +12,64 @@ echo ''
 # wait for 2 seconds
 sleep 2
 
-if [ -f createDataset.py ]; then
-    echo "⏳ --> Start creating dataset.py..."
-    python3 createDataset.py
+if [ -f 11_createDataset.py ]; then
+    echo "⏳ --> Start createDataset.py..."
+    python3 11_createDataset.py
     echo "✅ --> Dataset createt!"
 else
-    echo "❌ --> Could not find createDataset.py!"
+    echo "❌ --> Could not find 11_createDataset.py!"
 fi
 echo ''
 echo ''
+
+
+#### Start training  21_GPT2_TrainingLoop.py ####
 # wait for 2 seconds
 sleep 2
 
 
-if [ -f GPT2-Training.py ]; then
-    echo "⏳ --> Starting training GPT2-Training.py..."
-    echo "wrinting logfiles to log.txt"
-    # python3 GPT2-Training.py >> log.txt
-    echo "✅ --> Training GPT2-Training.py finished!"
+if [ -f 21_GPT2_TrainingLoop.py ]; then
+    echo "⏳ --> Starting training 21_GPT2_TrainingLoop.py..."
+    echo "writing logfiles to log.txt"
+    python3 21_GPT2_TrainingLoop.py >> log.txt
+    echo "✅ --> Training 21_GPT2_TrainingLoop.py finished!"
 else
-    echo "❌ --> Could not find GPT2-Training.py!"
+    echo "❌ --> Could not find 21_GPT2_TrainingLoop.py!"
 fi
 echo ''
 echo ''
+
+#### Start training  21_GPT2_TrainingLoopRap.py ####
 # wait for 2 seconds
 sleep 2
 
 
-if [ -f GPT2_TrainingLoop.py ]; then
-    echo "⏳ --> Starting training GPT2_TrainingLoop.py..."
-    echo "wrinting logfiles to log.txt"
-    python3 GPT2_TrainingLoop.py >> log.txt
-    echo "✅ --> Training GPT2_TrainingLoop.py finished!"
+if [ -f 21_GPT2_TrainingLoopRap.py ]; then
+    echo "⏳ --> Starting training 21_GPT2_TrainingLoopRap.py..."
+    echo "writing logfiles to log.txt"
+    python3 21_GPT2_TrainingLoopRap.py >> log.txt
+    echo "✅ --> Training 21_GPT2_TrainingLoopRap.py finished!"
 else
-    echo "❌ --> Could not find GPT2_TrainingLoop.py!"
+    echo "❌ --> Could not find 21_GPT2_TrainingLoopRap.py!"
 fi
 echo ''
 echo ''
+
+#### Start training  21_GPT2_TrainingLoop.py ####
+# wait for 2 seconds
+sleep 2
+
+
+if [ -f 21_GPT2_TrainingLoopTop.py ]; then
+    echo "⏳ --> Starting training 21_GPT2_TrainingLoopTop.py..."
+    echo "writing logfiles to log.txt"
+    python3 21_GPT2_TrainingLoopTop.py >> log.txt
+    echo "✅ --> Training 21_GPT2_TrainingLoopTop.py finished!"
+else
+    echo "❌ --> Could not find 21_GPT2_TrainingLoopTop.py!"
+fi
+echo ''
+echo ''
+
+
 echo "######### Training finished! #########"
