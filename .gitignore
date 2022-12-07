@@ -1,4 +1,6 @@
 .DS_Store
+.ipynb_checkpoints*
+.ipynb_checkpoints/*
 # datasets/genius/*.txt
 # datasets/kaggleData/*.txt
 # Lyrics_*.txt

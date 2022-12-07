@@ -21,7 +21,7 @@ print('''
 # %%
 # change dataset
 
-trainData = 'both' # 'top' 'both'
+trainData = 'both' # 'rap' 'both'
 
 
 # %%
@@ -53,12 +53,15 @@ file_name = sys.argv[0]
 print(' --> FILE NAME: ', file_name)
 
 # %%
+# set seed for randaomness
+seed = 0
+
 #Seeds and hyperparameters
-torch.manual_seed(0)
-torch.cuda.manual_seed_all(0)
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
 
 # set random seed
-random.seed(0)
+random.seed(seed)
 
 BATCH_SIZE = 2
 EPOCHS = 10
@@ -107,6 +110,40 @@ print('✅ --> Loaded dataset: ', trainData)
 # %% [markdown]
 # ---
 
+# %% [markdown]
+# ### Export test data
+
+# %%
+n = int(len(lyrics_df) * 0.10)
+test_samples = lyrics_df.sample(n, random_state=0)
+lyrics_df = lyrics_df.drop(test_samples.index)
+
+# %%
+test_samples["True_end_lyrics"] = ""
+test_samples["Lyrics_Cut"] = ""
+
+for row in test_samples.iterrows():
+    lyrics = str(row[1]['Lyrics'])
+    lyrics = lyrics.split()
+    split = int(len(lyrics) * 0.5)
+    
+    lyrics_cut = lyrics[:split]
+    true_end_lyrics = lyrics[split:]
+    
+    true_end_lyrics = " ".join(true_end_lyrics)
+    lyrics_cut = " ".join(lyrics_cut)
+    
+    row[1]["True_end_lyrics"] = true_end_lyrics
+    row[1]["Lyrics_Cut"] = lyrics_cut
+
+# %%
+path_test_samples = './datasets/' + trainData + "_test_samples.csv"
+test_samples.to_csv(path_test_samples)
+print('✅ --> Exported test sample dataset to : ', path_test_samples)
+
+# %% [markdown]
+# ---
+
 # %%
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
 configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
@@ -124,7 +161,7 @@ class GPT2Dataset(Dataset):
         self.attn_masks = []
 
         for txt in txt_list:
-            encodings_dict = tokenizer('<|startoftext|>'+ str(txt) + '<|endoftext|>', truncation=True, max_length=max_length, padding="max_length")
+            encodings_dict = tokenizer('<|startoftext|>' + str(txt) + '<|endoftext|>', truncation=True, max_length=max_length, padding="max_length")
             self.input_ids.append(torch.tensor(encodings_dict['input_ids']))
             self.attn_masks.append(torch.tensor(encodings_dict['attention_mask']))
     
@@ -132,10 +169,11 @@ class GPT2Dataset(Dataset):
         return len(self.input_ids)
 
     def __getitem__(self, idx):
-        return self.input_ids[idx], self.attn_masks[idx] 
+        return self.input_ids[idx], self.attn_masks[idx]
 
 # %%
-dataset = GPT2Dataset(lyrics_df["Lyrics"].tolist(), tokenizer, max_length=768)
+lyricList = lyrics_df["Lyrics"].tolist()
+dataset = GPT2Dataset(lyricList, tokenizer, max_length=768)
 
 # Split into training and validation sets
 train_size = int(0.9 * len(dataset))
