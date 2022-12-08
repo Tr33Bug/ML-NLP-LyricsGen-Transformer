@@ -13,7 +13,7 @@ Group members and Contributors:
 
 ---
 
-**Team Responsibilities:**
+**Team responsibilities:**
 
 [Henrik](https://github.com/Tr33Bug):
 - data engineering and dataset generation
