@@ -40,7 +40,7 @@ Group members and Contributors:
 3. 30_ModelEvaluation.ipynb
 4. 40_Prompting.ipynb
     - 41_Prompting.py
-
+5. 50_GeneratorGUI.py
 
 --- 
 ## Main project files
@@ -80,6 +80,8 @@ Notebook to perform prompting with OpenPrompt on the models.
 ### 41_Prompting.py
 Python script exported from `40_Prompting.ipynb` file to train remote on the KILab pool PC.
 
+### 50_GeneratorGUI.py
+Python script to demonstrate the song lyrics generation via a GUI.
 ---
 
 ## Setup notes
