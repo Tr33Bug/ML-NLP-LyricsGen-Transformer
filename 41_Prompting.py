@@ -1,5 +1,8 @@
-# %% [markdown]
-# ## Prompting
+######## PROMPTING SCRIPT ########
+#
+# Python script exported from `40_Prompting.ipynb` file to train remote on the KILab pool PC.
+#
+####
 
 # %% [markdown]
 # One of the few resources found to Prefix Templates with OpenPrompt

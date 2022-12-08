@@ -1,4 +1,4 @@
-echo "######### Start training-script! #########"
+echo "######### START TRAINING SCRIPT #########"
 echo '''   ____                  __ _ _   _            
   / __ \                / _(_) | | |           
  | |  | |_   _____ _ __| |_ _| |_| |_ ___ _ __ 
