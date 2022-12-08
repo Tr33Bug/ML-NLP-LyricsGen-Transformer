@@ -82,6 +82,8 @@ Python script exported from `40_Prompting.ipynb` file to train remote on the KIL
 
 ### 50_GeneratorGUI.py
 Python script to demonstrate the song lyrics generation via a GUI.
+
+
 ---
 
 ## Setup notes
