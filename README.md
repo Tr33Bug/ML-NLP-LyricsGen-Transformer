@@ -3,13 +3,10 @@
 
 Fine-tuning and prompting a transformer(GPT2) for a song-lyrics generator.
 
----
 
 Group members and Contributors:
-- [Tr33Bug](https://github.com/Tr33Bug)
-- [gusse-dev](https://github.com/Gusse-dev)
-- [CronJorian](https://github.com/CronJorian)
-- [BFuertsch](https://github.com/BenJosh95)
+| [Tr33Bug](https://github.com/Tr33Bug)  | [gusse-dev](https://github.com/Gusse-dev)  | [CronJorian](https://github.com/CronJorian)  | [BFuertsch](https://github.com/BenJosh95)  |
+|---|---|---|---|
 
 ---
 
