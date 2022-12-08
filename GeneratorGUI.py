@@ -8,6 +8,7 @@ import tkinter
 import customtkinter
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from transformers import pipeline
+import threading
 
 customtkinter.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -128,7 +129,7 @@ label_lyrics.grid(row=6, columnspan=4, padx=5, pady=20)
 text_lyrics = customtkinter.CTkTextbox(master=app, width=450, height=200)
 text_lyrics.grid(row=7, columnspan=4, padx=5, pady=5)
 
-button_generate = customtkinter.CTkButton(master=app, command=button_callback, text="Generate song lyrics", font=("Arial", 18))
+button_generate = customtkinter.CTkButton(master=app, command=lambda : threading.Thread(target=button_callback).start(), text="Generate song lyrics", font=("Arial", 18))
 button_generate.grid(row=8, columnspan=4, pady=20)
 
 app.mainloop()
