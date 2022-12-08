@@ -9,8 +9,6 @@ Group members and Contributors:
 - [CronJorian](https://github.com/CronJorian)
 - [BFuertsch](https://github.com/BenJosh95)
 
-
-
 ---
 
 ## Project structure
