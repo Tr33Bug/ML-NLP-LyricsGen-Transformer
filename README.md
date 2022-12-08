@@ -2,12 +2,34 @@
 `AI-lab task by Overfitter`
 
 Fine-tuning and prompting a transformer(GPT2) for a song-lyrics generator.
+
 ---
+
 Group members and Contributors:
 - [Tr33Bug](https://github.com/Tr33Bug)
 - [gusse-dev](https://github.com/Gusse-dev)
 - [CronJorian](https://github.com/CronJorian)
 - [BFuertsch](https://github.com/BenJosh95)
+
+---
+
+**Team Responsibilities:**
+
+[Henrik](https://github.com/Tr33Bug):
+- data engineering and dataset generation
+- operational training 
+- Team management and project documentation
+- git-maintainer
+
+[Michi](https://github.com/Gusse-dev):
+- model training and finetuning
+- model evaluation  
+
+[Sebastian](https://github.com/CronJorian): 
+- prompting
+
+[Benny](https://github.com/BenJosh95):
+- demo lyrics generator
 
 ---
 
