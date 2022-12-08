@@ -30,9 +30,9 @@ testLyricsBoth = root + 'datasets/both_test_samples.csv'
 testLyricsRap = root + 'datasets/rap_test_samples.csv'
 testLyricsTop = root + 'datasets/top_test_samples.csv'
 
-# define tkinter window
+# define ctkinter window
 app = customtkinter.CTk()
-app.geometry("580x700")
+app.geometry("560x700")
 app.title("Song Lyrics Generator")
 
 # generate song lyrics from given parameters
@@ -88,9 +88,10 @@ def button_callback():
 
             result = gpt_pipeline(song_input, min_length=int(entry_min.get()), max_length=int(entry_max.get()))[0]['generated_text']
 
-# frame_1 = customtkinter.CTkFrame(master=app)
-# frame_1.pack(pady=20, padx=40, fill="both", expand=True)
+            text_lyrics.delete('1.0', 'end') # delete last lyrics
+            text_lyrics.insert("0.0", result) # insert generated lyrics
 
+# GUI Definition
 label_model = customtkinter.CTkLabel(master=app, justify=tkinter.LEFT, text="Chose a model:", font=("Arial", 18))
 label_model.grid(row=0, columnspan=4, pady=20)
 
