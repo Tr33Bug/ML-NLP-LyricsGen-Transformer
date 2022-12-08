@@ -8,7 +8,6 @@ customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "gre
 
 # tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2') 
-####
 
 # paths
 root = './'
@@ -23,30 +22,64 @@ savedModelTop = driveFolder + runFolder + 'model_save/top/'
 testLyricsBoth = root + 'datasets/both_test_samples.csv'
 testLyricsRap = root + 'datasets/rap_test_samples.csv'
 testLyricsTop = root + 'datasets/top_test_samples.csv'
-###
 
+# define tkinter window
 app = customtkinter.CTk()
 app.geometry("580x700")
 app.title("Song Lyrics Generator")
 
+# generate song lyrics from given parameters
 def button_callback():
-    print(radiobutton_var.get()) # get model type
-    print(text_prompt.get("1.0", 'end-1c')) # get prompt
-    print(entry_min.get()) # get min length
-    print(entry_max.get()) # get max length
+    match radiobutton_var.get():
+        case 1: # rap
+            # load model from file
+            model_rap = GPT2LMHeadModel.from_pretrained(savedModelRap)
+            model_rap.resize_token_embeddings(len(tokenizer))
 
-    # load model from file
-    model_top = GPT2LMHeadModel.from_pretrained(savedModelTop)
-    model_top.resize_token_embeddings(len(tokenizer))
+            # pipline for text generation
+            lyrics_pipeline_rap = pipeline('text-generation',model=model_rap, tokenizer=tokenizer)
+            song_input = text_prompt.get("1.0", 'end-1c') + '\n'
+            
+            result = lyrics_pipeline_rap(song_input, min_length=int(entry_min.get()), max_length=int(entry_max.get()))[0]['generated_text']
 
-    # pipline for text generation
-    lyrics_pipeline_top = pipeline('text-generation',model=model_top, tokenizer=tokenizer)
-    song_input = 'can you generate me some songlyrics\n'
+            text_lyrics.delete('1.0', 'end') # delete last lyrics
+            text_lyrics.insert("0.0", result) # insert generated lyrics
+        case 2: # top_100
+            # load model from file
+            model_top = GPT2LMHeadModel.from_pretrained(savedModelTop)
+            model_top.resize_token_embeddings(len(tokenizer))
 
-    result = lyrics_pipeline_top(song_input, max_length=1024,min_length=512)[0]['generated_text']
-    
-    text_lyrics.delete('1.0', 'end') # delete last lyrics
-    text_lyrics.insert("0.0", result) # insert generated lyrics
+            # pipline for text generation
+            lyrics_pipeline_top = pipeline('text-generation',model=model_top, tokenizer=tokenizer)
+            song_input = text_prompt.get("1.0", 'end-1c') + '\n'
+
+            result = lyrics_pipeline_top(song_input, min_length=int(entry_min.get()), max_length=int(entry_max.get()))[0]['generated_text']
+            
+            text_lyrics.delete('1.0', 'end') # delete last lyrics
+            text_lyrics.insert("0.0", result) # insert generated lyrics
+        case 3: # both
+            # load model from file
+            model_both = GPT2LMHeadModel.from_pretrained(savedModelBoth)
+            model_both.resize_token_embeddings(len(tokenizer))
+
+            # pipline for text generation
+            lyrics_pipeline_both = pipeline('text-generation',model=model_both, tokenizer=tokenizer)
+            song_input = text_prompt.get("1.0", 'end-1c') + '\n'
+
+            result = lyrics_pipeline_both(song_input, min_length=int(entry_min.get()), max_length=int(entry_max.get()))[0]['generated_text']
+            
+            text_lyrics.delete('1.0', 'end') # delete last lyrics
+            text_lyrics.insert("0.0", result) # insert generated lyrics
+        case 4: # gpt_2
+            ## load vanilla GPT2 from huggingface
+            modelGPT2 = GPT2LMHeadModel.from_pretrained('gpt2')
+            modelGPT2.resize_token_embeddings(len(tokenizer))
+
+            # pipline for text generation
+            gpt_pipeline = pipeline('text-generation',model=modelGPT2, tokenizer=tokenizer)
+            song_input = text_prompt.get("1.0", 'end-1c') + '\n'
+
+            result = gpt_pipeline(song_input, min_length=int(entry_min.get()), max_length=int(entry_max.get()))[0]['generated_text']
 
 # frame_1 = customtkinter.CTkFrame(master=app)
 # frame_1.pack(pady=20, padx=40, fill="both", expand=True)
@@ -73,7 +106,6 @@ label_prompt.grid(row=2, columnspan=4, pady=20)
 
 text_prompt = customtkinter.CTkTextbox(master=app, width=400, height=30)
 text_prompt.grid(row=3, columnspan=4, padx=5)
-text_prompt.insert("0.0", "40 Jahre die Flippers")
 
 label_length = customtkinter.CTkLabel(master=app, justify=tkinter.LEFT, text="Length of the generated lyrics:", font=("Arial", 18))
 label_length.grid(row=4, columnspan=4, padx=5, pady=20)
@@ -89,7 +121,6 @@ label_lyrics.grid(row=6, columnspan=4, padx=5, pady=20)
 
 text_lyrics = customtkinter.CTkTextbox(master=app, width=450, height=200)
 text_lyrics.grid(row=7, columnspan=4, padx=5, pady=5)
-text_lyrics.insert("0.0", "Blubb\nBlubb\n\n\n")
 
 button_generate = customtkinter.CTkButton(master=app, command=button_callback, text="Generate song lyrics", font=("Arial", 18))
 button_generate.grid(row=8, columnspan=4, pady=20)
