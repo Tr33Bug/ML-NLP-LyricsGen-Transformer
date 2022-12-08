@@ -1,4 +1,9 @@
-# print asciart of the word DatasetCreater by Overfitter
+######## CREATE DATASET SCRIPT ########
+#
+# Python script to generate the datasets from the folders and save the datasets as `df_rap.csv`, `df_songs.csv` and `df_top.csv`.
+#
+####
+
 print('''
    _ \                       _| _)  |    |               
   |   | \ \   /  _ \   __|  |    |  __|  __|   _ \   __| 
@@ -27,11 +32,11 @@ except ImportError:
 
 
 
-#### FILE PATHS
+#### FILE PATHS ####
 # root path
 root = './'
 
-#### FILE PATHS
+#### FILE PATHS ####
 geniusTopRapIMDBClean = root + 'datasets/geniusTopRapIMDBClean/'
 geniusTopIMDBClean = root + 'datasets/geniusTopIMDBClean/'
 
@@ -53,7 +58,7 @@ def createDfFromFiles(path):
     # make the path from current directory and the input path
     pathComp = os.getcwd() + path
 
-    # create a tuple from files in path dataset with the file name and the file content, with latin-1 encoding
+    # create a tuple from files in path dataset
     files = [(file, open(pathComp + file, 'r', encoding='latin-1').read()) for file in os.listdir(pathComp)]
 
     # delete all .txt from filename
@@ -80,7 +85,7 @@ def createDfFromFiles(path):
     print('✅ --> Creating dataframe from', path, 'done!')
     return df
 
-#### CREATE DATAFRAMES
+#### CREATE DATAFRAMES ####
 
 # cretae dataframe from top artists
 df_top = createDfFromFiles(geniusTopIMDBClean)
@@ -88,7 +93,7 @@ df_top = createDfFromFiles(geniusTopIMDBClean)
 # create dataframe from rap artists
 df_rap = createDfFromFiles(geniusTopRapIMDBClean)
 
-#### CLEAN DATA I
+#### CLEAN DATA I ####
 
 # print names of artists with less than 50 songs
 less50 = []
@@ -114,21 +119,21 @@ print('    Number of Top Rappers --> df_rap:', len(df_rap['Artist'].unique()))
 
 print('✅ --> Cleaning Dataframes I done!')
 
-#### CREATE CSV
+#### CREATE CSV ####
 df_rap.to_csv(exportPathRap, index=False)
 df_top.to_csv(exportPathTop, index=False)
 
 print('✅ --> Exporting dataframes rap and top to', exportPathTop, 'and', exportPathRap, 'done!\n')
 
 
-#### MERGE DATAFRAMES
+#### MERGE DATAFRAMES ####
 
 # merge datasets
 df_songs = pd.concat([df_top, df_rap], ignore_index=True)
 df_songs.head()
 
 print('✅ --> Merging Dataframes I done!')
-#### CLEAN DATA II
+#### CLEAN DATA II ####
 
 # check for empty entries in dataframes
 print('    Empty entries in the dataframes:')
@@ -152,7 +157,7 @@ for artist in df_songs['Artist'].unique():
         df_songs = df_songs[df_songs['Artist'] != artist]
 
 print('✅ --> Cleaning Dataframe done!')
-#### CREATE CSV
+#### CREATE CSV ####
 
 # export dataframe to csv to path
 df_songs.to_csv(exportPath, index=False)

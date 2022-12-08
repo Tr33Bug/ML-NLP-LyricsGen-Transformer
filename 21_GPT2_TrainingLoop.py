@@ -1,3 +1,8 @@
+######## GPT2 TRAINING LOOP ########
+#
+# Notebook to export the test data for evaluation and train the dataset on the GPT2 model. 
+#
+####
 # %%
 print('''
    _ \                       _| _)  |    |               

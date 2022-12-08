@@ -2,46 +2,103 @@
 `AI-lab task by Overfitter`
 
 Fine-tuning and prompting a transformer(GPT2) for a song-lyrics generator.
----
-Groupmembers and Contributors:
-- [Tr33Bug](https://github.com/Tr33Bug)
-- [gusse-dev](https://github.com/Gusse-dev)
-- [CronJorian](https://github.com/CronJorian)
-- [BFuertsch](https://github.com/BenJosh95)
 
 
+Group members and Contributors:
+| [Tr33Bug](https://github.com/Tr33Bug)  | [gusse-dev](https://github.com/Gusse-dev)  | [CronJorian](https://github.com/CronJorian)  | [BFuertsch](https://github.com/BenJosh95)  |
+|---|---|---|---|
 
 ---
 
-## Projectstructure
+**Team responsibilities:**
+
+[Henrik](https://github.com/Tr33Bug):
+- data engineering and dataset generation
+- operational training 
+- Team management and project documentation
+- git-maintainer
+
+[Michi](https://github.com/Gusse-dev):
+- model training and finetuning
+- model evaluation  
+
+[Sebastian](https://github.com/CronJorian): 
+- prompting
+
+[Benny](https://github.com/BenJosh95):
+- demo lyrics generator
+
+---
+
+## Project structure
 0. README.md
-1. DataEngineering.ipynb
-    - createDataset.py
-2.  GPT2_TrainingLoop.ipynb
-    - GPT2_TrainingLoop.py
+1. 10_DataEngineering.ipynb
+    - 11_createDataset.py
+2.  20_GPT2_TrainingLoop.ipynb
+    - 21_GPT2_TrainingLoop.py
     - startTraining.sh
-3. ModelEvaluation.ipynb
+3. 30_ModelEvaluation.ipynb
+4. 40_Prompting.ipynb
+    - 41_Prompting.py
 
 
+--- 
+## Main project files
 
-### dataEngineering.ipynb
+### 10_DataEngineering.ipynb
+Notebook to generate, clean, and analyze the lyrics dataset for the lyrics generator. 
 
-The Dataengineering takes part in the **DataEngineering.ipynb**. In this Notebook, we generate and clean the datasets we need to perform the NLP-traning. For that we first make a list of the top 100 artists of all the time and of the top 100 rapper. The list ressources are: 
-- Top 49 20th Century: https://www.imdb.com/list/ls058480497/
-- Top 100 AllTime: https://www.imdb.com/list/ls064818015/
-- Top Rapper: https://www.imdb.com/list/ls054191097/
+1. **generate**: to generate the dataset, we use 3 lists from IMDB and the lyricsgenius framework to crawl the song lyrics from the API from (genius.com)[www.genius.com]:
+    - Top 49 20th Century: https://www.imdb.com/list/ls058480497/
+    - Top 100 AllTime: https://www.imdb.com/list/ls064818015/
+    - Top 100 Rapper: https://www.imdb.com/list/ls054191097/
+    - LyricsGenius-framework: https://github.com/johnwmillr/LyricsGenius
+    
+2. **clean**: cleaning the `.txt` files and deleting all unnecessary characters such as `워`, `()`, etc.
+3. **analyzing**: viewing graphs, merging the lists of artists, dropping short songs and artists with fewer songs, and counting the most used words. 
 
-After that, we merge the two lists, to get 3 lists in total:
-1. Top Artists100 (top)
-2. Top Rap-Artists (rap)
-3. the combination of both (both)
+In the end, we export the generated dataset files to `df_rap.csv`, `df_songs.csv`, and `df_top.csv`.
 
-With these lists, we crawl the top 50 song lyrics from every artists on the list and save them to lyrics folders. For that, we use the genius.com api with the python framework https://github.com/johnwmillr/LyricsGenius. 
-To use the crawler, create a .txt file in the project folder named `geniusToken.txt` and past the token from the genius.com api in it.  
+### 11_createDataset.py
+Python script to generate the datasets from the folders and save the datasets as `df_rap.csv`, `df_songs.csv`, and `df_top.csv`.
 
-With that dataset of ca. 8000 song lyrics, we clean the files, analyse them and write them to three csv tables. 
+### 20_GPT2_TrainingLoop.ipynb
+Notebook to export the test data for evaluation and train the dataset on the GPT2 model. 
 
-#### createDataset.py
+### 21_GPT2_TrainingLoop.py
+Python script exported from `20_GPT2_TrainingLoop.ipynb` file to train remote on the KILab pool PC.  
 
-For the cleaning and creating of the csv files (df_top.csv, df_rap.csv and df_songs.csv) you can also use the **createDataset.py** script.
+### startTraining.sh
+Helper script to perform the remote training on the KILab pool PC.
+
+### 30_ModelEvaluation.ipynb
+Notebook to evaluate the Training of our models and compare them to pretrained GPT2. For that, we load the training results and the models and calculate the BLEU score.
+
+### 40_Prompting.ipynb
+Notebook to perform prompting with OpenPrompt on the models. 
+
+### 41_Prompting.py
+Python script exported from `40_Prompting.ipynb` file to train remote on the KILab pool PC.
+
+---
+
+## Setup notes
+
+For `10_DataEngineering.ipynb` there needs to be a API token for the genius.com API stored in a file called `geniusToken.txt`.
+```Bash
+cd ML-NLP-LyricsGen-Transformer/
+
+touch geniusToken.txt
+
+echo TOKEN > geniusToken.txt
+```
+To use the dataset in the notebooks run the `11_createDataset.py` to create the CSV files stored in `./datasets/`.
+
+```Bash
+pip install pandas
+
+python 11_createDataset.py
+```
+
+---
 
