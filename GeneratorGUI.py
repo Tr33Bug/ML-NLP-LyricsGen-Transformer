@@ -37,6 +37,11 @@ app.title("Song Lyrics Generator")
 
 # generate song lyrics from given parameters
 def button_callback():
+    print('\n')
+    print('Loading the model and generating the song lyrics.')
+    print('This may take a second...')
+    print('----------------------------------------')
+
     match radiobutton_var.get():
         case "rap":
             # load model from file
@@ -90,6 +95,7 @@ def button_callback():
 
             text_lyrics.delete('1.0', 'end') # delete last lyrics
             text_lyrics.insert("0.0", result) # insert generated lyrics
+    print('✅ --> Generating song lyrics done!')
 
 # GUI Definition
 label_model = customtkinter.CTkLabel(master=app, justify=tkinter.LEFT, text="Chose a model:", font=("Arial", 18))
