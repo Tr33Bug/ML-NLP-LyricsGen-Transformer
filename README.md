@@ -65,3 +65,23 @@ Python script exported from `40_Prompting.ipynb` file to train remote on the KIL
 
 ---
 
+## Setup notes
+
+For `10_DataEngineering.ipynb` there needs to be a API token for the genius.com API stored in a file called `geniusToken.txt`.
+```Bash
+cd ML-NLP-LyricsGen-Transformer/
+
+touch geniusToken.txt
+
+echo TOKEN > geniusToken.txt
+```
+To use the dataset in the notebooks run the `11_createDataset.py` to create the CSV files stored in `./datasets/`.
+
+```Bash
+pip install pandas
+
+python 11_createDataset.py
+```
+
+---
+
