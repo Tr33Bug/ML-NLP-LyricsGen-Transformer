@@ -10,26 +10,6 @@ Group members and Contributors:
 
 ---
 
-**Team responsibilities:**
-
-[Henrik](https://github.com/Tr33Bug):
-- data engineering and dataset generation
-- operational training 
-- Team management and project documentation
-- git-maintainer
-
-[Michi](https://github.com/Gusse-dev):
-- model training and finetuning
-- model evaluation  
-
-[Sebastian](https://github.com/CronJorian): 
-- prompting
-
-[Benny](https://github.com/BenJosh95):
-- demo lyrics generator
-
----
-
 ## Project structure
 0. README.md
 1. 10_DataEngineering.ipynb
